@@ -1,0 +1,43 @@
+.header, .footer {
+    background-color: #eee;
+}
+
+.footer {
+    padding: 1vw 0 1vw 3vw;
+}
+
+h1 {
+    color: #003771;
+    padding: 3vw;
+    font-weight: 100;
+}
+
+.content {
+    width: 94vw;
+    padding: 5vw 0;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+@media only screen and (max-width: 700px) {
+    .content {
+        width: 90vw;
+    }
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
