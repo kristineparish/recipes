@@ -1,3 +1,3 @@
 # Recipes Website
 
-A personal project aimed to help me collect and organize family recipes.
+A personal website where I can collect and organize family recipes.
