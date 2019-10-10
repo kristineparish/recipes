@@ -73,104 +73,111 @@
             <!--<button type="submit" class="btn btn-primary" id="recipeSubmitBtn" onclick="makeCorsRequest()">Submit</button>-->
             <button type="button" onclick="makeCorsRequest()">Submit</button>
         </form>
+
+        <br>
+
+        <p>Eventually this will calculate nutrition facts and add the recipe 
+        with the nutrition table to the website, but for now it just calculates 
+        nutrition facts using <a href="API https://developer.edamam.com/edamam-docs-nutrition-api">Edamam's Nutition Analysis API</a>
+        </p>
+
+        <p id="loading"></p>
+
+
+
+        <section class="performance-facts" id="performance-facts">
+            <div class="performance-facts__header">
+                <h1 class="performance-facts__title">Nutrition Facts</h1>
+                <p><span id="lnumser">0</span> servings per container</p>
+            </div>
+            <table class="performance-facts__table">
+                <thead>
+                    <tr>
+                        <th colspan="3" class="amps">Amount Per Serving</th>
+                        <td class="nob" id="amps">-</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th colspan="2" id="lkcal-val-cal"><b>Calories</b></th>
+                        <td class="nob" id="cals">-</td>
+                    </tr>
+                    <tr class="thick-row">
+                        <td colspan="3" class="small-info"><b>% Daily Value*</b></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><b>Total Fat </b> <span id="totFat">-</span></th>
+                        <td><b><span id="totFatP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <td class="blank-cell"></td>
+                        <th>Saturated Fat <span id="satFat">-</span></th>
+                        <td><b><span id="satFatP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <td class="blank-cell"></td>
+                        <th>Trans Fat <span id="transFat">-</span></th>
+                        <td><b><span id="transFatP"></span></b></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><b>Cholesterol </b><span id="cholesterol">-</span></th>
+                        <td><b><span id="cholesterolP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><b>Sodium </b><span id="sodium">-</span></th>
+                        <td><b><span id="sodiumP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><b>Total Carbohydrate </b><span id="totCarbs">-</span></th>
+                        <td><b><span id="totCarbsP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <td class="blank-cell"></td>
+                        <th>Dietary Fiber <span id="fiber">-</span></th>
+                        <td><b><span id="fiberP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <td class="blank-cell"></td>
+                        <th>Total Sugars <span id="sugar">-</span></th>
+                        <td><b><span id="sugarP"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td class="blank-cell"></td>
+                        <th>Includes - Added Sugars</th>
+                        <td><span id="addedSugarP"></span></td>
+                    </tr>
+                    <tr class="thick-end">
+                        <th colspan="2"><b>Protein </b> <span id="protein">-</span></th>
+                        <td><b><span id="proteinP">-</span></b></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="performance-facts__table--grid">
+                <tbody>
+                    <tr>
+                        <th>Vitamin D <span id="vitD">-</span></th>
+                        <td><b><span id="vitDP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <th>Calcium <span id="calcium">-</span></th>
+                        <td><b><span id="calciumP">-</span></b></td>
+                    </tr>
+                    <tr>
+                        <th>Iron <span id="iron">-</span></th>
+                        <td><b><span id="ironP">-</span></b></td>
+                    </tr>
+                    <tr class="thin-end">
+                        <th>Potassium <span id="potassium">-</span></th>
+                        <td><b><span id="potassiumP">-</span></b></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="small-info" id="small-nutrition-info">*Percent Daily Values are based on a 2000 calorie diet</p>
+        </section>
     </div>
 
 
 
-    <pre id="response">
-    </pre>
-
-
-
-    <section class="performance-facts" id="performance-facts">
-        <div class="performance-facts__header">
-            <h1 class="performance-facts__title">Nutrition Facts</h1>
-            <p><span id="lnumser">0</span> servings per container</p>
-        </div>
-        <table class="performance-facts__table">
-            <thead>
-                <tr>
-                    <th colspan="3" class="amps">Amount Per Serving</th>
-                    <td class="nob" id="amps">-</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th colspan="2" id="lkcal-val-cal"><b>Calories</b></th>
-                    <td class="nob" id="cals">-</td>
-                </tr>
-                <tr class="thick-row">
-                    <td colspan="3" class="small-info"><b>% Daily Value*</b></td>
-                </tr>
-                <tr>
-                    <th colspan="2"><b>Total Fat </b> <span id="totFat">-</span></th>
-                    <td><b><span id="totFatP">-</span></b></td>
-                </tr>
-                <tr>
-                    <td class="blank-cell"></td>
-                    <th>Saturated Fat <span id="satFat">-</span></th>
-                    <td><b><span id="satFatP">-</span></b></td>
-                </tr>
-                <tr>
-                    <td class="blank-cell"></td>
-                    <th>Trans Fat <span id="transFat">-</span></th>
-                    <td><b><span id="transFatP"></span></b></td>
-                </tr>
-                <tr>
-                    <th colspan="2"><b>Cholesterol </b><span id="cholesterol">-</span></th>
-                    <td><b><span id="cholesterolP">-</span></b></td>
-                </tr>
-                <tr>
-                    <th colspan="2"><b>Sodium </b><span id="sodium">-</span></th>
-                    <td><b><span id="sodiumP">-</span></b></td>
-                </tr>
-                <tr>
-                    <th colspan="2"><b>Total Carbohydrate </b><span id="totCarbs">-</span></th>
-                    <td><b><span id="totCarbsP">-</span></b></td>
-                </tr>
-                <tr>
-                    <td class="blank-cell"></td>
-                    <th>Dietary Fiber <span id="fiber">-</span></th>
-                    <td><b><span id="fiberP">-</span></b></td>
-                </tr>
-                <tr>
-                    <td class="blank-cell"></td>
-                    <th>Total Sugars <span id="sugar">-</span></th>
-                    <td><b><span id="sugarP"></span></b></td>
-                </tr>
-                <tr>
-                    <td class="blank-cell"></td>
-                    <th>Includes - Added Sugars</th>
-                    <td><span id="addedSugarP"></span></td>
-                </tr>
-                <tr class="thick-end">
-                    <th colspan="2"><b>Protein </b> <span id="protein">-</span></th>
-                    <td><b><span id="proteinP">-</span></b></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="performance-facts__table--grid">
-            <tbody>
-                <tr>
-                    <th>Vitamin D <span id="vitD">-</span></th>
-                    <td><b><span id="vitDP">-</span></b></td>
-                </tr>
-                <tr>
-                    <th>Calcium <span id="calcium">-</span></th>
-                    <td><b><span id="calciumP">-</span></b></td>
-                </tr>
-                <tr>
-                    <th>Iron <span id="iron">-</span></th>
-                    <td><b><span id="ironP">-</span></b></td>
-                </tr>
-                <tr class="thin-end">
-                    <th>Potassium <span id="potassium">-</span></th>
-                    <td><b><span id="potassiumP">-</span></b></td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="small-info" id="small-nutrition-info">*Percent Daily Values are based on a 2000 calorie diet</p>
-    </section>
 
     <div class="footer">
         <a href="https://github.com/kristineparish/recipes">GitHub Repo</a>

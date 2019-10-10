@@ -49,7 +49,7 @@ function makeCorsRequest() {
 
   /*let recipe = document.getElementById('recipe').value;*/
   let recipe = getJson();
-  let pre = document.getElementById('response');
+  let loadingIndicator = document.getElementById('loading');
 
   var url = 'https://api.edamam.com/api/nutrition-details?app_id=' + app_id + '&app_key=' + app_key;
 
@@ -71,10 +71,11 @@ function makeCorsRequest() {
     alert('Woops, there was an error making the request.');
   };
 
-  pre.innerHTML = 'Loading...';
+  loadingIndicator.innerHTML = 'Loading...';
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.responseType = 'json';
   xhr.send(recipe);
+  loadingIndicator.innerHTML = '';
 }
 
 function numberPerServing(number, yield) {
@@ -121,6 +122,7 @@ function fillNutritionTable(nutritionData) {
   
   if (nutritionData.error) {
     console.log("API ERROR: " + nutritionData.error);
+    alert("Please check that you typed the recipe information in correctly!");
     return;
   }
 
