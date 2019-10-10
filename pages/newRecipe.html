@@ -2,9 +2,11 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css" type="text/css" />
-    <script type="text/javascript" src="../js/newRecipeForm.js"></script>
+    <link rel="stylesheet" href="../css/nutritionAPI.css" type="text/css" />
+    <script type="text/javascript" src="../js/nutritionAPI.js"></script>
 </head>
 
 <body>
@@ -39,14 +41,14 @@
         <form>
             <div class="form-group">
                 <label>Recipe Name</label>
-                <input id="nameInput" type="text" class="form-control" id="name" placeholder="Name your creation" onkeyup="suggestName()">
+                <input id="nameInput" type="text" class="form-control" id="name" onkeyup="suggestName()">
             </div>
             <div id="suggestions">
-                
+
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input type="text" class="form-control" id="description" placeholder="Add a description to your recipe">
+                <input type="text" class="form-control" id="description">
             </div>
             <div class="form-group">
                 <label>Category</label>
@@ -57,16 +59,118 @@
                 </select>
             </div>
             <div class="form-group">
+                <label>Yield</label>
+                <input type="text" class="form-control" id="yield">
+            </div>
+            <div class="form-group">
                 <label>Ingredients</label>
                 <textarea class="form-control" id="ingredients" rows="3" placeholder="List one ingredient per line"></textarea>
-             </div>
-             <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label>Instructions</label>
                 <textarea class="form-control" id="instructions" rows="3"></textarea>
-             </div>
-            <button type="submit" class="btn btn-primary" id="recipeSubmitBtn">Submit</button>
+            </div>
+            <!--<button type="submit" class="btn btn-primary" id="recipeSubmitBtn" onclick="makeCorsRequest()">Submit</button>-->
+            <button type="button" onclick="makeCorsRequest()">Submit</button>
         </form>
     </div>
+
+
+
+    <pre id="response">
+    </pre>
+
+
+
+    <section class="performance-facts" id="performance-facts">
+        <div class="performance-facts__header">
+            <h1 class="performance-facts__title">Nutrition Facts</h1>
+            <p><span id="lnumser">0</span> servings per container</p>
+        </div>
+        <table class="performance-facts__table">
+            <thead>
+                <tr>
+                    <th colspan="3" class="amps">Amount Per Serving</th>
+                    <td class="nob" id="amps">-</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="2" id="lkcal-val-cal"><b>Calories</b></th>
+                    <td class="nob" id="cals">-</td>
+                </tr>
+                <tr class="thick-row">
+                    <td colspan="3" class="small-info"><b>% Daily Value*</b></td>
+                </tr>
+                <tr>
+                    <th colspan="2"><b>Total Fat </b> <span id="totFat">-</span></th>
+                    <td><b><span id="totFatP">-</span></b></td>
+                </tr>
+                <tr>
+                    <td class="blank-cell"></td>
+                    <th>Saturated Fat <span id="satFat">-</span></th>
+                    <td><b><span id="satFatP">-</span></b></td>
+                </tr>
+                <tr>
+                    <td class="blank-cell"></td>
+                    <th>Trans Fat <span id="transFat">-</span></th>
+                    <td><b><span id="transFatP"></span></b></td>
+                </tr>
+                <tr>
+                    <th colspan="2"><b>Cholesterol </b><span id="cholesterol">-</span></th>
+                    <td><b><span id="cholesterolP">-</span></b></td>
+                </tr>
+                <tr>
+                    <th colspan="2"><b>Sodium </b><span id="sodium">-</span></th>
+                    <td><b><span id="sodiumP">-</span></b></td>
+                </tr>
+                <tr>
+                    <th colspan="2"><b>Total Carbohydrate </b><span id="totCarbs">-</span></th>
+                    <td><b><span id="totCarbsP">-</span></b></td>
+                </tr>
+                <tr>
+                    <td class="blank-cell"></td>
+                    <th>Dietary Fiber <span id="fiber">-</span></th>
+                    <td><b><span id="fiberP">-</span></b></td>
+                </tr>
+                <tr>
+                    <td class="blank-cell"></td>
+                    <th>Total Sugars <span id="sugar">-</span></th>
+                    <td><b><span id="sugarP"></span></b></td>
+                </tr>
+                <tr>
+                    <td class="blank-cell"></td>
+                    <th>Includes - Added Sugars</th>
+                    <td><span id="addedSugarP"></span></td>
+                </tr>
+                <tr class="thick-end">
+                    <th colspan="2"><b>Protein </b> <span id="protein">-</span></th>
+                    <td><b><span id="proteinP">-</span></b></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="performance-facts__table--grid">
+            <tbody>
+                <tr>
+                    <th>Vitamin D <span id="vitD">-</span></th>
+                    <td><b><span id="vitDP">-</span></b></td>
+                </tr>
+                <tr>
+                    <th>Calcium <span id="calcium">-</span></th>
+                    <td><b><span id="calciumP">-</span></b></td>
+                </tr>
+                <tr>
+                    <th>Iron <span id="iron">-</span></th>
+                    <td><b><span id="ironP">-</span></b></td>
+                </tr>
+                <tr class="thin-end">
+                    <th>Potassium <span id="potassium">-</span></th>
+                    <td><b><span id="potassiumP">-</span></b></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="small-info" id="small-nutrition-info">*Percent Daily Values are based on a 2000 calorie diet</p>
+    </section>
 
     <div class="footer">
         <a href="https://github.com/kristineparish/recipes">GitHub Repo</a>
@@ -74,6 +178,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>
